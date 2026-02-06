@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISTO Global - 화면정의서 (Wireframe)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Document Layout */
+        .document {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .document-header {
+            background: #111;
+            color: #fff;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+        }
+
+        .document-header h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .document-header .meta {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Section */
+        .section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #111;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .number {
+            background: #111;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Wireframe Container */
+        .wireframe-container {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .wireframe-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        /* Wireframe Components */
+        .wf-box {
+            border: 2px dashed #ccc;
+            background: #fff;
+            padding: 16px;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            border-radius: 4px;
+        }
+
+        .wf-box.filled {
+            background: #e8e8e8;
+            border-style: solid;
+            border-color: #bbb;
+        }
+
+        .wf-box.dark {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        .wf-box.accent {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .wf-box.outline {
+            background: #fff;
+            border: 2px solid #111;
+            color: #111;
+        }
+
+        .wf-box.highlight {
+            border-color: #DE0000;
+            color: #DE0000;
+        }
+
+        /* ==================== */
+        /* HEADER WIREFRAME     */
+        /* ==================== */
+        .wf-header {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .wf-header-top {
+            background: #f0f0f0;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .wf-brand-switcher {
+            display: flex;
+            gap: 0;
+        }
+
+        .wf-brand-tab {
+            padding: 6px 16px;
+            background: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .wf-brand-tab.active {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .wf-header-main {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+        }
+
+        .wf-logo {
+            width: 120px;
+            height: 32px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .wf-nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .wf-nav-item {
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .wf-nav-item:hover {
+            text-decoration: underline;
+        }
+
+        .wf-icons {
+            display: flex;
+            gap: 16px;
+            font-size: 18px;
+        }
+
+        /* ==================== */
+        /* PAGE LAYOUTS         */
+        /* ==================== */
+        .wf-page {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        /* Hero Banner */
+        .wf-hero {
+            height: 300px;
+            background: linear-gradient(135deg, #667 0%, #999 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .wf-hero::before {
+            content: '🖼️ Hero Banner Image';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        .wf-hero h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .wf-hero p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .wf-hero .wf-cta {
+            padding: 12px 32px;
+            background: #fff;
+            color: #111;
+            font-weight: 600;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Product Grid Section */
+        .wf-product-section {
+            padding: 32px 24px;
+        }
+
+        .wf-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .wf-section-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .wf-view-all {
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .wf-product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .wf-product-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .wf-product-image {
+            height: 180px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .wf-product-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #DE0000;
+            color: #fff;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .wf-product-wishlist {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .wf-product-info {
+            padding: 12px;
+        }
+
+        .wf-product-name {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .wf-product-price {
+            font-size: 13px;
+        }
+
+        .wf-product-price .original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 8px;
+        }
+
+        .wf-product-price .sale {
+            color: #DE0000;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .wf-footer {
+            background: #f5f5f5;
+            padding: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        .wf-footer-links {
+            margin-bottom: 12px;
+        }
+
+        .wf-footer-links a {
+            color: #333;
+            margin: 0 8px;
+            text-decoration: none;
+        }
+
+        /* ==================== */
+        /* PLP LAYOUT           */
+        /* ==================== */
+        .wf-plp-content {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        .wf-filter-sidebar {
+            background: #fafafa;
+            padding: 16px;
+            border-radius: 4px;
+        }
+
+        .wf-filter-group {
+            margin-bottom: 20px;
+        }
+
+        .wf-filter-title {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .wf-filter-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .wf-sort-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .wf-sort-bar select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+        }
+
+        /* ==================== */
+        /* PDP LAYOUT           */
+        /* ==================== */
+        .wf-pdp-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 32px 24px;
+        }
+
+        .wf-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .wf-gallery-main {
+            height: 400px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .wf-gallery-thumbs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .wf-thumb {
+            width: 80px;
+            height: 80px;
+            background: #e0e0e0;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .wf-thumb.active {
+            border-color: #111;
+        }
+
+        .wf-pdp-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .wf-pdp-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .wf-pdp-price {
+            font-size: 18px;
+        }
+
+        .wf-size-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .wf-size-label {
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wf-size-options {
+            display: flex;
+            gap: 8px;
+        }
+
+        .wf-size-btn {
+            width: 48px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: #fff;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .wf-size-btn.selected {
+            border: 2px solid #111;
+            font-weight: 600;
+        }
+
+        .wf-size-btn.soldout {
+            color: #ccc;
+            text-decoration: line-through;
+        }
+
+        .wf-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            width: fit-content;
+            border: 1px solid #ddd;
+        }
+
+        .wf-qty-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .wf-qty-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .wf-action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .wf-btn {
+            padding: 16px 32px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+        }
+
+        .wf-btn-primary {
+            background: #111;
+            color: #fff;
+        }
+
+        .wf-btn-secondary {
+            background: #fff;
+            color: #111;
+            border: 2px solid #111;
+        }
+
+        .wf-delivery-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* ==================== */
+        /* INFO TABLE           */
+        /* ==================== */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-table th {
+            background: #f9f9f9;
+            font-weight: 600;
+            width: 160px;
+        }
+
+        /* Annotation */
+        .annotation {
+            background: #fffde7;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .annotation-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        /* Interaction Flow */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .flow-step {
+            background: #fff;
+            border: 2px solid #ddd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .flow-step.action {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .flow-arrow {
+            font-size: 20px;
+            color: #999;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #111;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ==================== */
+        /* CART DRAWER          */
+        /* ==================== */
+        .wf-drawer-demo {
+            display: flex;
+            gap: 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 600px;
+        }
+
+        .wf-drawer-page {
+            flex: 1;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .wf-drawer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .wf-cart-drawer {
+            width: 420px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #ddd;
+        }
+
+        .wf-drawer-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wf-drawer-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .wf-drawer-close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .wf-drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 24px;
+        }
+
+        .wf-cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .wf-cart-item-image {
+            width: 80px;
+            height: 100px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #999;
+            flex-shrink: 0;
+        }
+
+        .wf-cart-item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .wf-cart-item-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .wf-cart-item-variant {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .wf-cart-item-price {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: auto;
+        }
+
+        .wf-cart-item-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .wf-cart-item-remove {
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .wf-cart-qty {
+            display: flex;
+            border: 1px solid #ddd;
+        }
+
+        .wf-cart-qty button {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .wf-cart-qty span {
+            width: 32px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        .wf-drawer-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+
+        .wf-cart-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .wf-cart-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        .wf-cart-row.total {
+            font-weight: 600;
+            font-size: 16px;
+            padding-top: 8px;
+            border-top: 1px solid #ddd;
+        }
+
+        .wf-cart-row .discount {
+            color: #DE0000;
+        }
+
+        /* ==================== */
+        /* MEMBERSHIP           */
+        /* ==================== */
+        .wf-membership-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .wf-membership-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .wf-membership-grade {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .wf-membership-badge {
+            background: #ffd700;
+            color: #111;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .wf-progress-section {
+            margin-bottom: 20px;
+        }
+
+        .wf-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .wf-progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .wf-progress-fill {
+            height: 100%;
+            background: #ffd700;
+            border-radius: 4px;
+        }
+
+        .wf-progress-hint {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .wf-points-box {
+            background: #fff;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .wf-points-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .wf-points-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .wf-points-detail {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .wf-tier-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .wf-tier-table th,
+        .wf-tier-table td {
+            padding: 16px 12px;
+            border: 1px solid #eee;
+        }
+
+        .wf-tier-table th {
+            background: #f9f9f9;
+            font-weight: 600;
+        }
+
+        .wf-tier-table .current {
+            background: #fffde7;
+            border-color: #ffc107;
+        }
+
+        .wf-tier-table .tier-name {
+            font-weight: 600;
+        }
+
+        .wf-tier-check {
+            color: #4caf50;
+        }
+
+        .wf-tier-dash {
+            color: #ccc;
+        }
+
+        /* ===== Screenshot-based Design Spec Styles ===== */
+        .design-spec {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .design-screenshots {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .screenshot-panel {
+            flex: 1;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .screenshot-panel.mobile {
+            flex: 0 0 280px;
+            max-width: 280px;
+        }
+
+        .screenshot-panel-header {
+            background: #333;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .screenshot-panel-header .size-info {
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .screenshot-scroll {
+            max-height: 700px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .screenshot-scroll img {
+            width: 100%;
+            display: block;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .spec-table thead th {
+            background: #111;
+            color: #fff;
+            padding: 10px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .spec-table tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .spec-table tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .spec-table td {
+            padding: 12px 16px;
+            vertical-align: top;
+        }
+
+        .spec-table .area-name {
+            font-weight: 600;
+            white-space: nowrap;
+            width: 160px;
+            color: #111;
+        }
+
+        .spec-table .area-badge {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .spec-table .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .spec-table .tag-theme { background: #e8f5e9; color: #2e7d32; }
+        .spec-table .tag-shopify { background: #e3f2fd; color: #1565c0; }
+        .spec-table .tag-custom { background: #fce4ec; color: #c62828; }
+        .spec-table .tag-app { background: #fff3e0; color: #e65100; }
+
+        .figma-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .figma-link:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <!-- Document Header -->
+        <div class="document-header">
+            <h1>MISTO Global Store - 화면정의서</h1>
+            <div class="meta">
+                <span>📅 2026-02-05</span>
+                <span>📋 Version 1.0</span>
+                <span>🎯 디자이너를 위한 페이지별 화면 구성 가이드</span>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="showTab('common')">공통 요소</button>
+            <button class="tab-btn" onclick="showTab('main')">Main</button>
+            <button class="tab-btn" onclick="showTab('plp')">PLP</button>
+            <button class="tab-btn" onclick="showTab('pdp')">PDP</button>
+            <button class="tab-btn" onclick="showTab('cart')">Cart</button>
+            <button class="tab-btn" onclick="showTab('membership')">Membership</button>
+            <button class="tab-btn" onclick="showTab('contact')">Contact Us</button>
+            <button class="tab-btn" onclick="showTab('store')">Store</button>
+            <button class="tab-btn" onclick="showTab('flow')">인터랙션 플로우</button>
+        </div>
+
+        <!-- ==================== -->
+        <!-- 공통 요소 탭 -->
+        <!-- ==================== -->
+        <div id="common" class="tab-content active">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">0</span>
+                    공통 요소 (Global Components)
+                </h2>
+
+                <!-- Header -->
+                <div style="margin-bottom: 24px;">
+                    <!-- Brand Switcher (인터랙티브) -->
+                    <div class="wireframe-container" style="margin-bottom: 0; border-bottom: none; border-radius: 8px 8px 0 0;">
+                        <div class="wireframe-label">Brand Switcher (커스텀 영역)</div>
+                        <div class="wf-header-top" style="border-radius: 0;">
+                            <div class="wf-brand-switcher">
+                                <div class="wf-brand-tab active">MATIN KIM</div>
+                                <div class="wf-brand-tab">MARITHE</div>
+                            </div>
+                            <div style="font-size: 13px; cursor: pointer;">🌐 EN / 中文</div>
+                        </div>
+                    </div>
+
+                    <!-- Announcement Bar + Nav (Figma 스크린샷) -->
+                    <div class="screenshot-panel" style="border-radius: 0 0 8px 8px;">
+                        <div class="screenshot-panel-header">
+                            <span>Header (Announcement Bar + Navigation)</span>
+                            <span class="size-info">1920 x 173px</span>
+                        </div>
+                        <div style="overflow: hidden;">
+                            <img src="figma-screenshots/header-full.png" alt="Header Desktop Design" style="width: 100%; display: block;">
+                        </div>
+                    </div>
+                </div>
+
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px;">#</th>
+                            <th style="width:180px;">영역</th>
+                            <th>기능 명세</th>
+                            <th style="width:120px;">개발 방식</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="area-badge">1</span></td>
+                            <td class="area-name">Brand Switcher</td>
+                            <td>MATIN KIM &harr; MARITHE 전환. 클릭 시 해당 브랜드 홈으로 이동하고 <strong>로고, 배너, 상품 컬렉션이 변경됨</strong></td>
+                            <td><span class="tag tag-custom">커스텀</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">2</span></td>
+                            <td class="area-name">Announcement Bar</td>
+                            <td>프로모션/공지 텍스트. "WELCOME TO OUR STORE" 등. 관리자 설정으로 텍스트 변경 가능</td>
+                            <td><span class="tag tag-theme">Release 테마</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">3</span></td>
+                            <td class="area-name">로고</td>
+                            <td>브랜드별 로고 표시 (Matin Kim / Marith&eacute;). 클릭 시 홈으로 이동</td>
+                            <td><span class="tag tag-theme">Release 테마</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">4</span></td>
+                            <td class="area-name">GNB (메가메뉴)</td>
+                            <td>HOME, SHOP(드롭다운), PAGES(드롭다운), PRODUCT FEATURES(드롭다운), CONTACT</td>
+                            <td><span class="tag tag-theme">Release 테마</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">5</span></td>
+                            <td class="area-name">언어 선택</td>
+                            <td>EN / 中文 토글. 기본값 영문(EN). 클릭 시 언어 변경 (English &harr; 繁體中文)</td>
+                            <td><span class="tag tag-shopify">Shopify 기본</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">6</span></td>
+                            <td class="area-name">검색</td>
+                            <td>클릭 시 검색창 확장. 자동완성 지원 (Release 테마 기본)</td>
+                            <td><span class="tag tag-theme">Release 테마</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">7</span></td>
+                            <td class="area-name">로그인</td>
+                            <td>비로그인: 로그인 페이지 이동 / 로그인: 마이페이지</td>
+                            <td><span class="tag tag-theme">Release 테마</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="area-badge">8</span></td>
+                            <td class="area-name">장바구니</td>
+                            <td>담긴 상품 수 뱃지 표시. 클릭 시 Cart Drawer 오픈</td>
+                            <td><span class="tag tag-theme">Release 테마</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="annotation">
+                    <div class="annotation-title">📱 모바일 변경사항</div>
+                    GNB &rarr; 햄버거 메뉴로 전환 / 스크롤 시 헤더 고정 (Sticky Header) / 검색: 별도 검색 페이지로 이동
+                </div>
+
+                <!-- Footer -->
+                <div style="margin-top: 32px;">
+                    <div class="design-screenshots">
+                        <div class="screenshot-panel">
+                            <div class="screenshot-panel-header">
+                                <span>Footer</span>
+                                <span class="size-info">1920 x 272px</span>
+                            </div>
+                            <div style="overflow: hidden;">
+                                <img src="figma-screenshots/footer-desktop.png" alt="Footer Desktop Design" style="width: 100%; display: block;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="spec-table" style="margin-top: 16px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 180px;">영역</th>
+                                <th>기능 명세</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="area-name">정책 링크</td>
+                                <td>Privacy Policy / Shipping Policy / Membership Benefits / Return &amp; Exchange Policy / Contact Us</td>
+                            </tr>
+                            <tr>
+                                <td class="area-name">SNS 링크</td>
+                                <td>FACEBOOK / INSTAGRAM / LINE &mdash; 각 브랜드 공식 채널로 이동</td>
+                            </tr>
+                            <tr>
+                                <td class="area-name">브랜드 로고</td>
+                                <td>하단 좌측 브랜드 로고 표시. <strong>브랜드별 로고 다름</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="area-name">Newsletter</td>
+                                <td>이메일 구독 입력 + Subscribe 버튼. "Sign up to receive 10% off your first order"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- Main 탭 -->
+        <!-- ==================== -->
+        <div id="main" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">1</span>
+                    Main (홈페이지)
+                </h2>
+
+                <div class="design-spec">
+                    <!-- Figma 원본 링크 -->
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin: 0; color: #666; font-size: 14px;">Figma 디자인 시안 기준 &middot; MATIN KIM 브랜드 &middot; Desktop 1920px</p>
+                        <a href="https://www.figma.com/design/EH1ZdHoy1W07YiYD1nb9kP?node-id=9001:3323" target="_blank" class="figma-link">Figma 원본 보기</a>
+                    </div>
+
+                    <!-- 스크린샷 -->
+                    <div class="design-screenshots">
+                        <div class="screenshot-panel">
+                            <div class="screenshot-panel-header">
+                                <span>Desktop</span>
+                                <span class="size-info">1920 x 9499px</span>
+                            </div>
+                            <div class="screenshot-scroll">
+                                <img src="figma-screenshots/main-desktop.png" alt="Main Desktop Design">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 영역별 기능 명세 -->
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">#</th>
+                                <th style="width:180px;">영역</th>
+                                <th>기능 명세</th>
+                                <th style="width:120px;">개발 방식</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">1</span></td>
+                                <td class="area-name">Announcement Bar</td>
+                                <td>상단 프로모션/공지 텍스트 바. Brand Switcher(MATIN KIM / MARITHE) 포함. <strong>브랜드 전환 시 테마 컬러 및 컬렉션 변경</strong></td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">2</span></td>
+                                <td class="area-name">Header / GNB</td>
+                                <td>로고 + 메가메뉴(Home, Shop, Contact 등) + 검색/로그인/장바구니 아이콘. 스크롤 시 Sticky Header 고정</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">3</span></td>
+                                <td class="area-name">Hero Banner</td>
+                                <td>전체 너비 비주얼 이미지(1920x1080). 시즌 메인 비주얼 + CTA 버튼(SHOP NOW). <strong>브랜드별 이미지 다름</strong>. 우측에 세로 텍스트 "Matin Kim" 표시</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">4</span></td>
+                                <td class="area-name">카테고리 네비게이션</td>
+                                <td>이미지 + 텍스트 형태의 카테고리 바로가기 (예: ALL, OUTER, TOP, BOTTOM, ACC). 클릭 시 해당 컬렉션 PLP로 이동</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">5</span></td>
+                                <td class="area-name">추천 상품 섹션</td>
+                                <td>BEST SELLERS / NEW ARRIVALS 등 상품 그리드. 4열(Desktop). 상품 카드: 이미지 + 상품명 + 가격. Hover 시 2번째 이미지 전환</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">6</span></td>
+                                <td class="area-name">비주얼 배너 (중간)</td>
+                                <td>룩북/캠페인 스타일 대형 이미지 배너. 텍스트 오버레이 + CTA 링크. 어두운 배경(#212121) 위 이미지 레이아웃</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">7</span></td>
+                                <td class="area-name">컬렉션 하이라이트</td>
+                                <td>시즌 컬렉션 또는 콜라보레이션 소개 섹션. 이미지 그리드 + View All 링크. 클릭 시 해당 컬렉션 PLP로 이동</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">8</span></td>
+                                <td class="area-name">Footer</td>
+                                <td>브랜드 정보, 고객 서비스 링크, SNS 아이콘, Copyright. 결제 수단 아이콘(Visa, Mastercard 등) 표시</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📱 모바일 변경사항</div>
+                        히어로 배너: 모바일 최적화 이미지로 교체 / 상품 그리드: 2열 / 메가메뉴: 햄버거 메뉴로 전환 / 카테고리: 가로 스크롤
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- PLP 탭 -->
+        <!-- ==================== -->
+        <div id="plp" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">2</span>
+                    PLP (Product Listing Page)
+                </h2>
+
+                <div class="design-spec">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin: 0; color: #666; font-size: 14px;">Figma 디자인 시안 기준 &middot; MATIN KIM 브랜드</p>
+                        <a href="https://www.figma.com/design/EH1ZdHoy1W07YiYD1nb9kP?node-id=11081:470" target="_blank" class="figma-link">Figma 원본 보기</a>
+                    </div>
+
+                    <!-- 스크린샷: Desktop + Mobile -->
+                    <div class="design-screenshots">
+                        <div class="screenshot-panel">
+                            <div class="screenshot-panel-header">
+                                <span>Desktop</span>
+                                <span class="size-info">1920px</span>
+                            </div>
+                            <div class="screenshot-scroll">
+                                <img src="figma-screenshots/plp-desktop.png" alt="PLP Desktop Design">
+                            </div>
+                        </div>
+                        <div class="screenshot-panel mobile">
+                            <div class="screenshot-panel-header">
+                                <span>Mobile</span>
+                                <span class="size-info">375px</span>
+                            </div>
+                            <div class="screenshot-scroll">
+                                <img src="figma-screenshots/plp-mobile.png" alt="PLP Mobile Design">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 영역별 기능 명세 -->
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">#</th>
+                                <th style="width:180px;">영역</th>
+                                <th>기능 명세</th>
+                                <th style="width:120px;">개발 방식</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">1</span></td>
+                                <td class="area-name">Header / GNB</td>
+                                <td>Main과 동일. Sticky Header. 현재 카테고리 메뉴 활성화 표시</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">2</span></td>
+                                <td class="area-name">Breadcrumb</td>
+                                <td>Home &gt; Category &gt; Sub-category 경로 표시. 각 단계 클릭 시 해당 페이지로 이동</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">3</span></td>
+                                <td class="area-name">컬렉션 타이틀</td>
+                                <td>카테고리명 + 상품 수량 표시. 필터/정렬 컨트롤 포함</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">4</span></td>
+                                <td class="area-name">필터 (Filter)</td>
+                                <td>Category, Size, Color, Price 필터. 복수 선택 가능. 선택 즉시 AJAX로 상품 업데이트. 모바일: 하단 슬라이드 패널</td>
+                                <td><span class="tag tag-shopify">Shopify 기본</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">5</span></td>
+                                <td class="area-name">정렬 (Sort)</td>
+                                <td>Best Selling(기본), Newest, Price Low&rarr;High, Price High&rarr;Low. 드롭다운 선택</td>
+                                <td><span class="tag tag-shopify">Shopify 기본</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">6</span></td>
+                                <td class="area-name">상품 그리드</td>
+                                <td>4열(Desktop), 2열(Mobile). 상품 카드: 이미지 + 상품명 + 가격. Hover 시 2번째 이미지 전환. 컬러 스와치 표시</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">7</span></td>
+                                <td class="area-name">퀵뷰 (Quick View)</td>
+                                <td>상품 카드 Hover 시 "Quick View" 버튼 표시. 클릭 시 모달로 상품 정보 + 장바구니 담기</td>
+                                <td><span class="tag tag-app">앱 (Quick View)</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">8</span></td>
+                                <td class="area-name">위시리스트</td>
+                                <td>상품 카드에 하트 아이콘 표시. 클릭 시 위시리스트에 추가/제거. 로그인 필요</td>
+                                <td><span class="tag tag-app">앱 (Wishlist Plus)</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">9</span></td>
+                                <td class="area-name">페이지네이션</td>
+                                <td>숫자 + 이전/다음 화살표, 또는 "Load More" 버튼</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">10</span></td>
+                                <td class="area-name">Footer</td>
+                                <td>Main과 동일</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📱 모바일 변경사항</div>
+                        필터: 하단 슬라이드 패널로 표시 (Filter 버튼 클릭) / 상품 그리드: 2열 / 위시리스트: 상품 카드 우측 상단 하트 아이콘 / 정렬: 상단 드롭다운 유지
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- PDP 탭 -->
+        <!-- ==================== -->
+        <div id="pdp" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">3</span>
+                    PDP (Product Detail Page)
+                </h2>
+
+                <div class="design-spec">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="margin: 0; color: #666; font-size: 14px;">Figma 디자인 시안 기준 &middot; MATIN KIM 브랜드</p>
+                        <a href="https://www.figma.com/design/EH1ZdHoy1W07YiYD1nb9kP?node-id=11081:470" target="_blank" class="figma-link">Figma 원본 보기</a>
+                    </div>
+
+                    <!-- 스크린샷: Desktop + Mobile -->
+                    <div class="design-screenshots">
+                        <div class="screenshot-panel">
+                            <div class="screenshot-panel-header">
+                                <span>Desktop</span>
+                                <span class="size-info">1920px</span>
+                            </div>
+                            <div class="screenshot-scroll">
+                                <img src="figma-screenshots/pdp-desktop.png" alt="PDP Desktop Design">
+                            </div>
+                        </div>
+                        <div class="screenshot-panel mobile">
+                            <div class="screenshot-panel-header">
+                                <span>Mobile</span>
+                                <span class="size-info">375px</span>
+                            </div>
+                            <div class="screenshot-scroll">
+                                <img src="figma-screenshots/pdp-mobile.png" alt="PDP Mobile Design">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 영역별 기능 명세 -->
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">#</th>
+                                <th style="width:180px;">영역</th>
+                                <th>기능 명세</th>
+                                <th style="width:120px;">개발 방식</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">1</span></td>
+                                <td class="area-name">Header / GNB</td>
+                                <td>공통 헤더. Sticky Header. Breadcrumb: Home &gt; Category &gt; Product Name</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">2</span></td>
+                                <td class="area-name">이미지 갤러리</td>
+                                <td>좌측 영역. 메인 이미지 + 멀티 앵글 이미지 그리드(4장). 메인 이미지 클릭 시 확대(Zoom) 모달. 모바일: 가로 스와이프 갤러리</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">3</span></td>
+                                <td class="area-name">상품 정보</td>
+                                <td>우측 영역. 상품명 + 뱃지(BEST/NEW/SALE) + 가격(정가/할인가). 할인 시 정가 취소선 + 할인가 빨간색 표시</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">4</span></td>
+                                <td class="area-name">컬러 선택</td>
+                                <td>컬러 스와치(원형 컬러칩). 선택 시 해당 컬러 상품 이미지로 전환. 품절 컬러 취소선 표시</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">5</span></td>
+                                <td class="area-name">사이즈 선택</td>
+                                <td>XS/S/M/L/XL 버튼. 품절 시 비활성화 + 취소선. Size Guide 클릭 시 모달 (ERP 상품 설명 기반 치수 정보)</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">6</span></td>
+                                <td class="area-name">수량 + 장바구니</td>
+                                <td>수량: +/- 버튼 (1~재고수량). <strong>ADD TO CART</strong>: Cart Drawer 오픈. <strong>BUY IT NOW</strong>: Shopify Checkout 바로 이동</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">7</span></td>
+                                <td class="area-name">위시리스트</td>
+                                <td>하트 아이콘 클릭 시 위시리스트에 추가/제거. 로그인 필요</td>
+                                <td><span class="tag tag-app">앱 (Wishlist Plus)</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">8</span></td>
+                                <td class="area-name">상품 상세 정보</td>
+                                <td>아코디언 형태. Description(기본 펼침) / Share on SNS / Payment &amp; Delivery(접힘) / Contact Us(접힘)</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">9</span></td>
+                                <td class="area-name">비주얼 배너</td>
+                                <td>브랜드 감성 이미지 배너. "Amazing details. Organic fabrics." 등 텍스트 오버레이</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">10</span></td>
+                                <td class="area-name">추천 상품 (You may also like)</td>
+                                <td>현재 상품과 연관된 상품 4개 표시. Shopify 동적 상품 추천 API 기반</td>
+                                <td><span class="tag tag-shopify">Shopify 기본</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">11</span></td>
+                                <td class="area-name">리뷰 섹션</td>
+                                <td>상품 리뷰 목록 + 작성 기능. 별점 + 텍스트 + 이미지 첨부</td>
+                                <td><span class="tag tag-app">앱 (Judge.me)</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">12</span></td>
+                                <td class="area-name">Footer</td>
+                                <td>Main과 동일</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📱 모바일 변경사항</div>
+                        레이아웃: 이미지 갤러리(스와이프) &rarr; 상품 정보 세로 스택 / ADD TO CART 버튼: 하단 고정(sticky) / 아코디언: 전체 너비
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- Cart 탭 -->
+        <!-- ==================== -->
+        <div id="cart" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">4</span>
+                    Cart Drawer (장바구니)
+                </h2>
+
+                <div class="annotation" style="margin-bottom: 24px;">
+                    <div class="annotation-title">💡 Drawer 형식</div>
+                    장바구니 아이콘 클릭 시 오른쪽에서 슬라이드로 나타나는 Drawer 형태. 별도 페이지 이동 없이 현재 페이지에서 확인/수정 가능.
+                </div>
+
+                <div class="wireframe-container">
+                    <div class="wireframe-label">Cart Drawer Layout (오른쪽에서 슬라이드)</div>
+                    <div class="wf-drawer-demo">
+                        <!-- 배경 페이지 (흐리게) -->
+                        <div class="wf-drawer-page">
+                            <div class="wf-drawer-overlay"></div>
+                            현재 페이지 (PDP, PLP 등)<br>
+                            <small>← 배경 어둡게 처리</small>
+                        </div>
+
+                        <!-- Cart Drawer -->
+                        <div class="wf-cart-drawer">
+                            <div class="wf-drawer-header">
+                                <span class="wf-drawer-title">YOUR CART (3)</span>
+                                <span class="wf-drawer-close">✕</span>
+                            </div>
+
+                            <div class="wf-drawer-body">
+                                <!-- Cart Item 1 -->
+                                <div class="wf-cart-item">
+                                    <div class="wf-cart-item-image">Image</div>
+                                    <div class="wf-cart-item-info">
+                                        <div class="wf-cart-item-name">Back Logo Hoody Down Jumper</div>
+                                        <div class="wf-cart-item-variant">Size: M / Color: Black</div>
+                                        <div class="wf-cart-item-price">$60.00</div>
+                                    </div>
+                                    <div class="wf-cart-item-actions">
+                                        <span class="wf-cart-item-remove">🗑</span>
+                                        <div class="wf-cart-qty">
+                                            <button>−</button>
+                                            <span>1</span>
+                                            <button>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Item 2 -->
+                                <div class="wf-cart-item">
+                                    <div class="wf-cart-item-image">Image</div>
+                                    <div class="wf-cart-item-info">
+                                        <div class="wf-cart-item-name">Classic Logo T-Shirt</div>
+                                        <div class="wf-cart-item-variant">Size: S / Color: White</div>
+                                        <div class="wf-cart-item-price">$45.00</div>
+                                    </div>
+                                    <div class="wf-cart-item-actions">
+                                        <span class="wf-cart-item-remove">🗑</span>
+                                        <div class="wf-cart-qty">
+                                            <button>−</button>
+                                            <span>2</span>
+                                            <button>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Item 3 -->
+                                <div class="wf-cart-item">
+                                    <div class="wf-cart-item-image">Image</div>
+                                    <div class="wf-cart-item-info">
+                                        <div class="wf-cart-item-name">Wide Denim Pants</div>
+                                        <div class="wf-cart-item-variant">Size: M / Color: Blue</div>
+                                        <div class="wf-cart-item-price">$120.00</div>
+                                    </div>
+                                    <div class="wf-cart-item-actions">
+                                        <span class="wf-cart-item-remove">🗑</span>
+                                        <div class="wf-cart-qty">
+                                            <button>−</button>
+                                            <span>1</span>
+                                            <button>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coupon -->
+                                <div style="margin-top: 16px; padding: 16px; background: #f9f9f9; border-radius: 4px;">
+                                    <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px;">쿠폰 코드</div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <input type="text" placeholder="코드 입력" style="flex: 1; padding: 8px; border: 1px solid #ddd;">
+                                        <button style="padding: 8px 16px; background: #111; color: #fff; border: none;">적용</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wf-drawer-footer">
+                                <div class="wf-cart-summary">
+                                    <div class="wf-cart-row">
+                                        <span>Subtotal</span>
+                                        <span>$270.00</span>
+                                    </div>
+                                    <div class="wf-cart-row">
+                                        <span>Shipping</span>
+                                        <span>FREE</span>
+                                    </div>
+                                    <div class="wf-cart-row">
+                                        <span>Discount</span>
+                                        <span class="discount">-$20.00</span>
+                                    </div>
+                                    <div class="wf-cart-row total">
+                                        <span>Total</span>
+                                        <span>$250.00</span>
+                                    </div>
+                                </div>
+                                <button class="wf-btn wf-btn-primary" style="width: 100%;">CHECKOUT</button>
+                                <div style="text-align: center; margin-top: 12px;">
+                                    <a href="#" style="font-size: 13px; color: #666;">Continue Shopping</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="info-table">
+                    <tr>
+                        <th>트리거</th>
+                        <td>헤더 장바구니 아이콘 클릭, 또는 Add to Cart 후 자동 오픈</td>
+                    </tr>
+                    <tr>
+                        <th>Drawer 위치</th>
+                        <td>오른쪽에서 슬라이드 인. 너비 약 400-450px</td>
+                    </tr>
+                    <tr>
+                        <th>배경</th>
+                        <td>반투명 오버레이. 오버레이 클릭 시 Drawer 닫힘</td>
+                    </tr>
+                    <tr>
+                        <th>상품 아이템</th>
+                        <td>이미지 + 상품명 + 옵션(사이즈/컬러) + 가격 + 수량 조절 + 삭제</td>
+                    </tr>
+                    <tr>
+                        <th>수량 변경</th>
+                        <td>+/- 버튼 클릭 시 즉시 반영, 가격 실시간 업데이트</td>
+                    </tr>
+                    <tr>
+                        <th>상품 삭제</th>
+                        <td>🗑 아이콘 클릭 → 확인 없이 즉시 삭제 (또는 Undo 토스트)</td>
+                    </tr>
+                    <tr>
+                        <th>쿠폰</th>
+                        <td>코드 입력 후 적용 버튼 클릭 → 할인 금액 반영</td>
+                    </tr>
+                    <tr>
+                        <th>Checkout</th>
+                        <td>Shopify Checkout 페이지로 이동</td>
+                    </tr>
+                </table>
+
+                <div class="annotation">
+                    <div class="annotation-title">📱 모바일 변경사항</div>
+                    Drawer 너비: 화면 전체 또는 90% / 하단에서 슬라이드 업 형태도 고려 가능
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- Membership 탭 -->
+        <!-- ==================== -->
+        <div id="membership" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">5</span>
+                    Membership (멤버십)
+                </h2>
+
+                <div class="design-spec">
+                    <p style="color: #666; font-size: 14px; margin: 0;">정적 정보 페이지 &middot; Shopify Pages로 구현 &middot; 비로그인 사용자도 조회 가능</p>
+
+                    <!-- 멤버십 정적 페이지 와이어프레임 -->
+                    <div class="wireframe-container">
+                        <div class="wireframe-label">Membership Benefits Page (정적 페이지)</div>
+                        <div class="wf-page" style="padding: 0;">
+                            <!-- 페이지 타이틀 -->
+                            <div style="text-align: center; padding: 48px 24px 32px; background: #111; color: #fff;">
+                                <h2 style="font-size: 28px; font-weight: 700; letter-spacing: 2px; margin: 0;">MEMBERSHIP BENEFITS</h2>
+                                <p style="font-size: 14px; opacity: 0.6; margin: 12px 0 0;">會員權益</p>
+                            </div>
+
+                            <!-- 등급 소개 카드 3개 -->
+                            <div style="display: flex; gap: 0; border-bottom: 1px solid #eee;">
+                                <div style="flex: 1; text-align: center; padding: 32px 16px; border-right: 1px solid #eee;">
+                                    <div style="font-size: 11px; color: #999; letter-spacing: 1px; margin-bottom: 8px;">TIER 01</div>
+                                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">SIGN UP</div>
+                                    <div style="font-size: 13px; color: #666;">회원 가입 시 자동 부여</div>
+                                </div>
+                                <div style="flex: 1; text-align: center; padding: 32px 16px; border-right: 1px solid #eee; background: #fafafa;">
+                                    <div style="font-size: 11px; color: #999; letter-spacing: 1px; margin-bottom: 8px;">TIER 02</div>
+                                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">VIP</div>
+                                    <div style="font-size: 13px; color: #666;">누적 구매 HKD 4,000</div>
+                                </div>
+                                <div style="flex: 1; text-align: center; padding: 32px 16px; background: #f5f5f5;">
+                                    <div style="font-size: 11px; color: #999; letter-spacing: 1px; margin-bottom: 8px;">TIER 03</div>
+                                    <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">VVIP</div>
+                                    <div style="font-size: 13px; color: #666;">누적 구매 HKD 8,500</div>
+                                </div>
+                            </div>
+
+                            <!-- 혜택 비교표 영역 -->
+                            <div style="padding: 32px 24px;">
+                                <div style="text-align: center; margin-bottom: 24px;">
+                                    <div style="font-size: 18px; font-weight: 600;">등급별 혜택 안내</div>
+                                    <div style="font-size: 13px; color: #999; margin-top: 4px;">Membership Tier Benefits</div>
+                                </div>
+                                <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; font-size: 13px;">
+                                    <!-- 헤더 -->
+                                    <div style="display: flex; background: #111; color: #fff; font-weight: 600; font-size: 12px;">
+                                        <div style="flex: 2; padding: 10px 16px;">혜택 항목</div>
+                                        <div style="flex: 1; padding: 10px 16px; text-align: center;">SIGN UP</div>
+                                        <div style="flex: 1; padding: 10px 16px; text-align: center;">VIP</div>
+                                        <div style="flex: 1; padding: 10px 16px; text-align: center;">VVIP</div>
+                                    </div>
+                                    <!-- 할인 -->
+                                    <div style="display: flex; border-bottom: 1px solid #eee;">
+                                        <div style="flex: 2; padding: 12px 16px; font-weight: 500;">상시 할인</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; color: #999;">-</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; font-weight: 600;">5%</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; font-weight: 600;">10%</div>
+                                    </div>
+                                    <!-- 웰컴 쿠폰 -->
+                                    <div style="display: flex; border-bottom: 1px solid #eee; background: #fafafa;">
+                                        <div style="flex: 2; padding: 12px 16px; font-weight: 500;">Welcome 쿠폰</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">HKD 50</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">HKD 400</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">HKD 800</div>
+                                    </div>
+                                    <!-- 생일 쿠폰 -->
+                                    <div style="display: flex; border-bottom: 1px solid #eee;">
+                                        <div style="flex: 2; padding: 12px 16px; font-weight: 500;">생일 쿠폰</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; color: #999;">-</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">15%</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">20%</div>
+                                    </div>
+                                    <!-- 가입쿠폰 -->
+                                    <div style="display: flex; border-bottom: 1px solid #eee; background: #fafafa;">
+                                        <div style="flex: 2; padding: 12px 16px; font-weight: 500;">가입 쿠폰팩</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">5%, 10%</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; color: #999;">-</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; color: #999;">-</div>
+                                    </div>
+                                    <!-- 무료배송 -->
+                                    <div style="display: flex;">
+                                        <div style="flex: 2; padding: 12px 16px; font-weight: 500;">무료 배송 쿠폰</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center;">O</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; color: #999;">-</div>
+                                        <div style="flex: 1; padding: 12px 16px; text-align: center; color: #999;">-</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 유의사항 -->
+                            <div style="padding: 24px; border-top: 1px solid #eee; background: #fafafa;">
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">유의사항 / Notes</div>
+                                <div style="font-size: 12px; color: #777; line-height: 1.8;">
+                                    <div>• 등급 산정 기간: 가입일로부터 1년 단위 갱신</div>
+                                    <div>• 웰컴 쿠폰: 발급일로부터 60일 내 사용</div>
+                                    <div>• 가입 쿠폰팩: 가입 후 30일 내 사용</div>
+                                    <div>• VIP/VVIP 할인은 프로모션 상품과 중복 적용 불가</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기능 명세 -->
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">#</th>
+                                <th style="width:180px;">영역</th>
+                                <th>기능 명세</th>
+                                <th style="width:120px;">개발 방식</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">1</span></td>
+                                <td class="area-name">페이지 타이틀</td>
+                                <td>"MEMBERSHIP BENEFITS" 타이틀 + 서브텍스트. 다크 배경, 센터 정렬</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">2</span></td>
+                                <td class="area-name">등급 소개 카드</td>
+                                <td>SIGN UP / VIP / VVIP 3단계 카드. 등급명 + 조건 텍스트. 정적 콘텐츠</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">3</span></td>
+                                <td class="area-name">혜택 비교표</td>
+                                <td>상시할인 / Welcome 쿠폰 / 생일쿠폰 / 가입쿠폰팩 / 무료배송 항목별 등급 비교. 정적 HTML 테이블</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">4</span></td>
+                                <td class="area-name">유의사항</td>
+                                <td>쿠폰 사용기한, 등급 갱신조건, 중복할인 불가 등 안내 텍스트</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">5</span></td>
+                                <td class="area-name">쿠폰 발급 (백엔드)</td>
+                                <td>Welcome Kit / 생일 쿠폰 자동 발급. 사용 기한 관리 (30일 또는 60일). 이 페이지에는 표시되지 않음</td>
+                                <td><span class="tag tag-app">앱 (SmartPush)</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">6</span></td>
+                                <td class="area-name">등급 자동 부여 (백엔드)</td>
+                                <td>누적 구매 금액 기준 자동 등급 업그레이드. 갱신 조건 미충족 시 등급 하락. 이 페이지에는 표시되지 않음</td>
+                                <td><span class="tag tag-custom">커스텀</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📌 참고</div>
+                        이 페이지는 <strong>Shopify Pages</strong>로 구현하는 정적 정보 페이지입니다. 로그인 여부와 관계없이 동일한 콘텐츠를 표시합니다.<br>
+                        레퍼런스: <a href="https://www.matinkim.com.tw/en/pages/membership" target="_blank" style="color: #1565c0;">matinkim.com.tw/membership</a><br>
+                        멤버십 시스템 범위(마이그레이션만 vs 신규 구축)는 고객사 확인 대기 중 (회신 요청: 2/7).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- Contact Us 탭 -->
+        <!-- ==================== -->
+        <div id="contact" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">6</span>
+                    Contact Us (문의하기)
+                </h2>
+
+                <div class="design-spec">
+                    <p style="color: #666; font-size: 14px; margin: 0;">정적 정보 페이지 &middot; Shopify Pages로 구현 &middot; 문의 폼 없음</p>
+
+                    <!-- 와이어프레임 -->
+                    <div class="wireframe-container">
+                        <div class="wireframe-label">Contact Us Page Layout (정적 페이지)</div>
+                        <div class="wf-page" style="padding: 0;">
+                            <!-- 페이지 타이틀 -->
+                            <div style="text-align: center; padding: 40px 24px 24px;">
+                                <h2 style="font-size: 28px; font-weight: 700; letter-spacing: 2px; margin: 0;">CONTACT US</h2>
+                            </div>
+
+                            <!-- 2컬럼 레이아웃: 회사정보 + LINE QR -->
+                            <div style="display: flex; gap: 40px; padding: 32px 48px 48px; align-items: flex-start;">
+                                <!-- 왼쪽: 회사 정보 -->
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 700; font-size: 15px; margin-bottom: 16px;">Misto Brand Holdings Limited, Taiwan Branch</div>
+                                    <div style="font-size: 14px; color: #333; line-height: 1.8; margin-bottom: 20px;">
+                                        Rm. B, 10F., No. 167, Dunhua N. Rd.,<br>
+                                        Songshan Dist., Taipei City 10546, Taiwan
+                                    </div>
+                                    <div style="font-size: 14px; color: #333; line-height: 2;">
+                                        <div>VAT number: XXXXXXXX</div>
+                                        <div>Tel: 02-XXXX-XXXX</div>
+                                        <div>Mail: matinkim_tw@mistobrand.com</div>
+                                    </div>
+                                </div>
+
+                                <!-- 오른쪽: LINE QR 코드 -->
+                                <div style="flex: 0 0 280px; text-align: center;">
+                                    <div style="width: 200px; height: 200px; background: #f0f0f0; border: 1px solid #ddd; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                        <div style="font-size: 12px; color: #999;">LINE QR Code</div>
+                                    </div>
+                                    <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Matin Kim Taiwan</div>
+                                    <div style="font-size: 14px; color: #1565c0; text-decoration: underline; cursor: pointer;">LINE Official Account</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기능 명세 -->
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">#</th>
+                                <th style="width:180px;">영역</th>
+                                <th>기능 명세</th>
+                                <th style="width:120px;">개발 방식</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">1</span></td>
+                                <td class="area-name">페이지 타이틀</td>
+                                <td>"CONTACT US" 타이틀. 센터 정렬</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">2</span></td>
+                                <td class="area-name">회사 정보</td>
+                                <td>법인명, 주소, VAT 번호, 전화번호, 이메일. 정적 텍스트 콘텐츠</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">3</span></td>
+                                <td class="area-name">LINE QR 코드</td>
+                                <td>LINE 공식 계정 QR 이미지 + 계정명 + 링크. 브랜드별로 다른 LINE 계정 연결</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📌 참고</div>
+                        문의 폼 없이 정적 정보만 제공하는 페이지. 고객 문의는 LINE 공식 계정으로 유도.<br>
+                        레퍼런스: <a href="https://www.matinkim.com.tw/en/pages/contact-us" target="_blank" style="color: #1565c0;">matinkim.com.tw/contact-us</a><br>
+                        브랜드별(MATIN KIM / MARITHE) 별도 연락처 및 LINE 계정 필요 여부 확인 필요.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- Store 탭 -->
+        <!-- ==================== -->
+        <div id="store" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">7</span>
+                    Store (매장 찾기)
+                </h2>
+
+                <div class="design-spec">
+                    <p style="color: #666; font-size: 14px; margin: 0;">오프라인 매장 위치 안내 페이지 &middot; 대만/홍콩/마카오 매장</p>
+
+                    <!-- 와이어프레임 -->
+                    <div class="wireframe-container">
+                        <div class="wireframe-label">Store Locator Page Layout</div>
+                        <div class="wf-page" style="padding: 24px;">
+                            <div style="text-align: center; margin-bottom: 32px;">
+                                <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 8px;">OUR STORES</h2>
+                                <p style="color: #666; font-size: 14px;">Find a store near you</p>
+                            </div>
+
+                            <div style="display: flex; gap: 24px;">
+                                <!-- 매장 리스트 -->
+                                <div style="flex: 0 0 360px;">
+                                    <div style="margin-bottom: 16px;">
+                                        <input type="text" placeholder="Search by city or area..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                                    </div>
+
+                                    <div style="border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
+                                        <div style="padding: 16px; border-bottom: 1px solid #eee; background: #f9f9f9;">
+                                            <div style="font-weight: 600; margin-bottom: 4px;">MATIN KIM Taipei Flagship</div>
+                                            <div style="font-size: 13px; color: #666; line-height: 1.8;">
+                                                No. 123, Zhongxiao E. Rd, Da'an Dist.<br>
+                                                Tel: +886-2-XXXX-XXXX<br>
+                                                Mon-Sun 11:00 - 21:00
+                                            </div>
+                                        </div>
+                                        <div style="padding: 16px; border-bottom: 1px solid #eee;">
+                                            <div style="font-weight: 600; margin-bottom: 4px;">MATIN KIM Causeway Bay</div>
+                                            <div style="font-size: 13px; color: #666; line-height: 1.8;">
+                                                Shop 201, Times Square, Causeway Bay<br>
+                                                Tel: +852-XXXX-XXXX<br>
+                                                Mon-Sun 10:00 - 22:00
+                                            </div>
+                                        </div>
+                                        <div style="padding: 16px;">
+                                            <div style="font-weight: 600; margin-bottom: 4px;">MARITHE Tsim Sha Tsui</div>
+                                            <div style="font-size: 13px; color: #666; line-height: 1.8;">
+                                                Shop 305, K11 MUSEA, TST<br>
+                                                Tel: +852-XXXX-XXXX<br>
+                                                Mon-Sun 10:00 - 22:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 지도 영역 -->
+                                <div style="flex: 1; background: #e8e8e8; border-radius: 8px; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 16px;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 48px; margin-bottom: 12px;">&#x1F5FA;</div>
+                                        Google Maps / Kakao Maps<br>
+                                        <small>매장 위치 핀 표시</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기능 명세 -->
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">#</th>
+                                <th style="width:180px;">영역</th>
+                                <th>기능 명세</th>
+                                <th style="width:120px;">개발 방식</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="area-badge">1</span></td>
+                                <td class="area-name">매장 목록</td>
+                                <td>오프라인 매장 리스트. 매장명, 주소, 전화번호, 운영시간 표시. 브랜드별(MATIN KIM / MARITHE) 필터 가능</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">2</span></td>
+                                <td class="area-name">매장 검색</td>
+                                <td>도시/지역명으로 매장 검색. 검색 결과에 따라 리스트 + 지도 핀 필터링</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">3</span></td>
+                                <td class="area-name">지도</td>
+                                <td>Google Maps 임베드. 매장 위치 핀 표시. 핀 클릭 시 매장 정보 팝업. 리스트 항목 클릭 시 해당 핀으로 이동</td>
+                                <td><span class="tag tag-custom">커스텀</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="area-badge">4</span></td>
+                                <td class="area-name">매장 상세</td>
+                                <td>주소 (길찾기 링크 연동), 전화번호 (모바일 탭 시 바로 전화), 운영시간</td>
+                                <td><span class="tag tag-theme">Release 테마</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📱 모바일 변경사항</div>
+                        지도: 상단에 전체 너비로 표시 / 매장 리스트: 지도 아래 세로 스택 / 전화번호 탭 시 바로 통화 연결
+                    </div>
+
+                    <div class="annotation">
+                        <div class="annotation-title">📌 참고</div>
+                        Store 페이지 디자인은 TBD 상태. 개발범위정의서 확정 후 상세 설계 예정.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- 인터랙션 플로우 탭 -->
+        <!-- ==================== -->
+        <div id="flow" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="number">8</span>
+                    인터랙션 플로우
+                </h2>
+
+                <h3 style="margin-bottom: 16px;">상품 구매 플로우</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step">PLP 상품 클릭</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">PDP 진입</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">사이즈 선택</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">수량 선택</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step action">Add to Cart</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">장바구니</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step action">Checkout</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step" style="background: #4caf50; color: #fff; border-color: #4caf50;">주문 완료</div>
+                </div>
+
+                <h3 style="margin: 32px 0 16px;">브랜드 전환 플로우</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step">MATIN KIM 홈</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step action">Brand Switcher 클릭</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">MARITHE 선택</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">로고 변경</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">배너 변경</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">상품 필터링</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">테마 컬러 변경</div>
+                </div>
+
+                <h3 style="margin: 32px 0 16px;">반응형 브레이크포인트</h3>
+                <table class="info-table">
+                    <tr>
+                        <th>Desktop</th>
+                        <td>768px+ / 4열 그리드 / 전체 GNB / 좌측 필터 사이드바</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>~767px / 2열 그리드 / 햄버거 메뉴 / 하단 슬라이드 필터 / 하단 고정 CTA</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
